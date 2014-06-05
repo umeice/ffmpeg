@@ -70,9 +70,9 @@ RUN \
 RUN \
   cd /tmp && \
   ldconfig && \
-  wget http://www.ffmpeg.org/releases/ffmpeg-2.2.2.tar.gz && \
-  tar xvzf ffmpeg-2.2.2.tar.gz && \
-  cd /tmp/ffmpeg-2.2.2 && \
+  wget http://www.ffmpeg.org/releases/ffmpeg-2.2.3.tar.gz && \
+  tar xvzf ffmpeg-2.2.3.tar.gz && \
+  cd /tmp/ffmpeg-2.2.3 && \
   ./configure --enable-gpl --enable-version3 --enable-nonfree --enable-libsoxr --enable-libvidstab --enable-libmp3lame --enable-libfdk-aac --enable-libopus --enable-libwebp --enable-libvpx --enable-libx264 --enable-libx265 && \
   make && make install
 
