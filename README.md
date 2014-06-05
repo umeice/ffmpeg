@@ -11,7 +11,7 @@ This repository contains **Dockerfile** of [ffmpeg](http://www.ffmpeg.org/)
 
 ### Installation
 
-Dockerfile: `docker build -t="umeice/ffmpeg" github.com/umeice/ffmpeg`
+From Dockerfile: `docker build -t="umeice/ffmpeg" github.com/umeice/ffmpeg`
 
 ### Attention
 
