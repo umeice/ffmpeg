@@ -69,11 +69,35 @@ RUN \
   make && make install
 RUN \
   cd /tmp && \
+  wget http://downloads.xiph.org/releases/ogg/libogg-1.3.2.tar.gz && \
+  tar xvzf libogg-1.3.2.tar.gz && \
+  cd libogg-1.3.2 && \
+  ./configure && \
+  make && make install
+RUN \
+  cd /tmp && \
+  wget http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.4.tar.gz && \
+  tar xvzf libvorbis-1.3.4.tar.gz && \
+  cd libvorbis-1.3.4 && \
+  ./configure && \
+  make && make install
+RUN \
+  cd /tmp && \
+  wget http://downloads.xiph.org/releases/theora/libtheora-1.1.1.tar.bz2 && \
+  tar xvf libtheora-1.1.1.tar.bz2 && \
+  cd libtheora-1.1.1 && \
+  ./configure && \
+  make && make install
+RUN \
+  cd /tmp && \
   ldconfig && \
   wget http://www.ffmpeg.org/releases/ffmpeg-2.2.4.tar.gz && \
   tar xvzf ffmpeg-2.2.4.tar.gz && \
   cd /tmp/ffmpeg-2.2.4 && \
-  ./configure --enable-gpl --enable-version3 --enable-nonfree --enable-libsoxr --enable-libvidstab --enable-libmp3lame --enable-libfdk-aac --enable-libopus --enable-libwebp --enable-libvpx --enable-libx264 --enable-libx265 && \
+  ./configure --enable-gpl --enable-version3 --enable-nonfree \
+  --enable-libsoxr --enable-libmp3lame --enable-libvorbis --enable-libfdk-aac --enable-libopus \
+  --enable-libwebp --enable-libtheora --enable-libvpx --enable-libx264 --enable-libx265 \
+  --enable-libvidstab && \
   make && make install
 
 # Define mountable directories.
