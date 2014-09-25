@@ -56,9 +56,9 @@ RUN \
 RUN \
   apt-get install libjpeg-dev libgif-dev libtiff5-dev libpng12-dev -y && \
   cd /tmp && \
-  wget https://webp.googlecode.com/files/libwebp-0.4.0.tar.gz && \
-  tar xvzf libwebp-0.4.0.tar.gz && \
-  cd libwebp-0.4.0 && \
+  wget http://downloads.webmproject.org/releases/webp/libwebp-0.4.1.tar.gz && \
+  tar xvzf libwebp-0.4.1.tar.gz && \
+  cd libwebp-0.4.1 && \
   ./configure && \
   make && make install
 RUN \
