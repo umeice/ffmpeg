@@ -1,6 +1,6 @@
 
 # Pull base image.
-FROM dockerfile/ubuntu
+FROM ubuntu:latest
 
 # Install apps.
 RUN \
@@ -70,8 +70,8 @@ RUN \
 RUN \
   cd /tmp && \
   ldconfig && \
-  wget http://www.ffmpeg.org/releases/ffmpeg-2.6.2.tar.gz && \
-  tar xvzf ffmpeg-2.6.2.tar.gz && \
+  wget http://www.ffmpeg.org/releases/ffmpeg-2.6.2.tar.bz2 && \
+  tar jxvf ffmpeg-2.6.2.tar.bz2 && \
   cd /tmp/ffmpeg-2.6.2 && \
   ./configure --enable-gpl --enable-version3 --enable-nonfree --enable-libsoxr --enable-libvidstab --enable-libmp3lame --enable-libfdk-aac --enable-libopus --enable-libwebp --enable-libvpx --enable-libx264 --enable-libx265 && \
   make && make install
