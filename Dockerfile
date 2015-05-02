@@ -5,7 +5,7 @@ FROM ubuntu:latest
 # Install apps.
 RUN \
   apt-get update && apt-get upgrade -y && \
-  apt-get install mercurial cmake libtool autoconf yasm nasm pkg-config libmp3lame-dev libbz2-dev -y
+  apt-get install git mercurial cmake libtool autoconf yasm nasm pkg-config libmp3lame-dev libbz2-dev -y
 RUN \
   cd /tmp && \
   git clone https://github.com/georgmartius/vid.stab.git && \
