@@ -5,7 +5,9 @@ FROM ubuntu:latest
 # Install apps.
 RUN \
   apt-get update && apt-get upgrade -y && \
-  apt-get install git mercurial cmake libtool autoconf yasm nasm pkg-config libmp3lame-dev libbz2-dev -y
+  apt-get install -y git mercurial wget \
+    tar gzip bzip2 xz-utils \
+    gcc g++ cmake libtool autoconf yasm nasm pkg-config
 RUN \
   cd /tmp && \
   git clone https://github.com/georgmartius/vid.stab.git && \
@@ -48,8 +50,8 @@ RUN \
   make && make install
 RUN \
   cd /tmp && \
-  wget http://sourceforge.net/projects/soxr/files/soxr-0.1.1-Source.tar.xz && \
-  tar xvf soxr-0.1.1-Source.tar.xz && \
+  wget http://downloads.sourceforge.net/project/soxr/soxr-0.1.1-Source.tar.xz && \
+  tar Jxvf soxr-0.1.1-Source.tar.xz && \
   cd soxr-0.1.1-Source && \
   cmake . && \
   make && make install
@@ -68,6 +70,7 @@ RUN \
   ./configure --enable-shared && \
   make && make install
 RUN \
+  apt-get install -y libmp3lame-dev libbz2-dev && \
   cd /tmp && \
   ldconfig && \
   wget http://www.ffmpeg.org/releases/ffmpeg-2.6.2.tar.bz2 && \
