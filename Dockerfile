@@ -2,9 +2,10 @@
 # Pull base image.
 FROM ubuntu:latest
 
+RUN \
+  apt-get update -qq && apt-get upgrade -qq
 # Install apps.
 RUN \
-  apt-get update && apt-get upgrade -y && \
   apt-get install -y git mercurial wget \
     tar gzip bzip2 xz-utils \
     gcc g++ cmake libtool autoconf yasm nasm pkg-config
