@@ -4,10 +4,6 @@ FROM ubuntu:latest
 
 RUN \
   apt-get update -qq && apt-get upgrade -qq
-RUN \
-  apt-get install language-pack-ja && \
-  update-locale LANG=ja_JP.UTF-8
-
 # Install apps.
 RUN \
   apt-get install -y git mercurial wget \
@@ -97,6 +93,10 @@ RUN \
   cd /tmp/ffmpeg-2.6.2 && \
   ./configure --enable-gpl --enable-version3 --enable-nonfree --enable-libsoxr --enable-libvidstab --enable-libmp3lame --enable-libfdk-aac --enable-libopus --enable-libvorbis --enable-libwebp --enable-libvpx --enable-libx264 --enable-libx265 && \
   make && make install
+
+RUN \
+  apt-get install language-pack-ja && \
+  update-locale LANG=ja_JP.UTF-8
 
 # Define mountable directories.
 VOLUME ["/data"]
