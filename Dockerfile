@@ -95,7 +95,7 @@ RUN \
   make && make install
 
 RUN \
-  apt-get install language-pack-ja && \
+  apt-get install -y language-pack-ja && \
   update-locale LANG=ja_JP.UTF-8
 
 # Define mountable directories.
