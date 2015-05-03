@@ -61,6 +61,20 @@ RUN \
   cmake . && \
   make && make install
 RUN \
+  cd /tmp && \
+  wget http://downloads.xiph.org/releases/ogg/libogg-1.3.2.tar.xz && \
+  tar Jxvf libogg-1.3.2.tar.xz && \
+  cd libogg-1.3.2 && \
+  ./configure && \
+  make && make install
+RUN \
+  cd /tmp && \
+  wget http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.5.tar.xz && \
+  tar Jxvf libvorbis-1.3.5.tar.xz && \
+  cd libvorbis-1.3.5 && \
+  ./configure && \
+  make && make install
+RUN \
   apt-get install libjpeg-dev libgif-dev libtiff5-dev libpng12-dev -y && \
   cd /tmp && \
   wget http://downloads.webmproject.org/releases/webp/libwebp-0.4.3.tar.gz && \
@@ -81,7 +95,7 @@ RUN \
   wget http://www.ffmpeg.org/releases/ffmpeg-2.6.2.tar.bz2 && \
   tar jxvf ffmpeg-2.6.2.tar.bz2 && \
   cd /tmp/ffmpeg-2.6.2 && \
-  ./configure --enable-gpl --enable-version3 --enable-nonfree --enable-libsoxr --enable-libvidstab --enable-libmp3lame --enable-libfdk-aac --enable-libopus --enable-libwebp --enable-libvpx --enable-libx264 --enable-libx265 && \
+  ./configure --enable-gpl --enable-version3 --enable-nonfree --enable-libsoxr --enable-libvidstab --enable-libmp3lame --enable-libfdk-aac --enable-libopus --enable-libvorbis --enable-libwebp --enable-libvpx --enable-libx264 --enable-libx265 && \
   make && make install
 
 # Define mountable directories.
