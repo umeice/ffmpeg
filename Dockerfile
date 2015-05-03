@@ -4,6 +4,10 @@ FROM ubuntu:latest
 
 RUN \
   apt-get update -qq && apt-get upgrade -qq
+RUN \
+  apt-get install language-pack-ja && \
+  update-locale LANG=ja_JP.UTF-8
+
 # Install apps.
 RUN \
   apt-get install -y git mercurial wget \
