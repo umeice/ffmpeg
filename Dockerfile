@@ -1,6 +1,6 @@
 
 # Pull base image.
-FROM ubuntu:latest
+FROM debian:jessie
 
 RUN \
   apt-get update -qq && apt-get upgrade -qq
@@ -31,6 +31,18 @@ RUN \
 #  make && make install
 RUN \
   cd /tmp && \
+  git clone git://code.dyne.org/frei0r.git && \
+  cd frei0r && \
+  cmake . && \
+  make && make install
+RUN \
+  cd /tmp && \
+  git clone https://github.com/TimothyGu/libilbc.git && \
+  cd libilbc && \
+  cmake . && \
+  make && make install && rm -rf *
+RUN \
+  cd /tmp && \
   git clone git://git.videolan.org/x264.git && \
   cd x264 && \
   ./configure --enable-shared && \
@@ -41,6 +53,16 @@ RUN \
 #  cd x265/build/linux && ./make-Makefiles.bash && \
   cd x265 && \
   cmake -G "Unix Makefiles" ./source && \
+  make && make install
+RUN \
+  cd /tmp && \
+  git clone https://github.com/cisco/openh264.git && \
+  cd openh264 && \
+  make && make install
+RUN \
+  cd /tmp && \
+  git clone https://github.com/ultravideo/kvazaar.git && \
+  cd kvazaar && cd src && \
   make && make install
 RUN \
   cd /tmp && \
@@ -79,24 +101,81 @@ RUN \
   ./configure && \
   make && make install
 RUN \
+  apt-get install -y libva-dev && \
+  cd /tmp && \
+  git clone https://github.com/lu-zero/mfx_dispatch.git && \
+  cd mfx_dispatch && \
+  libtoolize && aclocal && autoconf && automake --add-missing && \
+  ./configure --enable-shared && \
+  make && make install
+RUN \
   cd /tmp && \
   git clone https://chromium.googlesource.com/webm/libvpx && \
   cd libvpx && \
   ./configure --enable-shared && \
   make && make install
 RUN \
-  apt-get install -y libmp3lame-dev libbz2-dev && \
   cd /tmp && \
-  ldconfig && \
-  wget http://www.ffmpeg.org/releases/ffmpeg-2.6.2.tar.bz2 && \
-  tar jxvf ffmpeg-2.6.2.tar.bz2 && \
-  cd /tmp/ffmpeg-2.6.2 && \
-  ./configure --enable-gpl --enable-version3 --enable-nonfree --enable-libsoxr --enable-libvidstab --enable-libmp3lame --enable-libfdk-aac --enable-libopus --enable-libvorbis --enable-libwebp --enable-libvpx --enable-libx264 --enable-libx265 && \
+  git clone https://github.com/foo86/dcadec.git && \
+  cd dcadec && \
   make && make install
-
 RUN \
-  apt-get install -y language-pack-ja && \
-  update-locale LANG=ja_JP.UTF-8
+  apt-get install -y libmp3lame-dev libbz2-dev libass-dev libbluray-dev libbs2b-dev libcaca-dev libgme-dev libgsm1-dev libopencore-amrnb-dev libopencore-amrwb-dev libopenjpeg-dev librtmp-dev libschroedinger-dev libspeex-dev libtheora-dev libtwolame-dev libvo-aacenc-dev libvo-amrwbenc-dev libwavpack-dev libpulse-dev && \
+  ldconfig
+RUN \
+  cd /tmp && \
+  git clone https://github.com/FFmpeg/FFmpeg.git
+RUN \
+  cd /tmp/FFmpeg && \
+  git checkout refs/tags/n2.8.1 && \
+  ./configure \
+    --enable-gpl \
+    --enable-version3 \ 
+    --enable-nonfree \
+    --enable-avisynth \
+    --enable-bzlib \
+    --enable-fontconfig \
+    --enable-frei0r \
+    --enable-gnutls \
+    --enable-iconv \
+    --enable-libass \
+    --enable-libbluray \
+    --enable-libbs2b \
+    --enable-libcaca \
+    --enable-libdcadec \
+    --enable-libfdk-aac \
+    --enable-libfreetype \
+    --enable-libfribidi \
+    --enable-libgme \
+    --enable-libgsm \
+    --enable-libilbc \
+    --enable-libkvazaar \
+    --enable-libmfx \
+    --enable-libmp3lame \
+    --enable-libopencore-amrnb \
+    --enable-libopencore-amrwb \
+    --enable-libopenh264 \
+    --enable-libopenjpeg \
+    --enable-libopus \
+    --enable-librtmp \
+    --enable-libschroedinger \
+    --enable-libsoxr \
+    --enable-libspeex \
+    --enable-libtheora \
+    --enable-libtwolame \
+    --enable-libvidstab \
+    --enable-libvo-aacenc \
+    --enable-libvo-amrwbenc \
+    --enable-libvorbis \
+    --enable-libpulse \
+    --enable-libvpx \
+    --enable-libwavpack \
+    --enable-libwebp \
+    --enable-libx264 \
+    --enable-libx265 \
+    --enable-lzma \
+    --enable-zlib && \
+  make && make install
 
 # Define mountable directories.
 VOLUME ["/data"]
