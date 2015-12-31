@@ -73,9 +73,9 @@ RUN \
   make && make install
 RUN \
   cd /tmp && \
-  wget http://downloads.sourceforge.net/project/soxr/soxr-0.1.1-Source.tar.xz && \
-  tar Jxvf soxr-0.1.1-Source.tar.xz && \
-  cd soxr-0.1.1-Source && \
+  wget http://downloads.sourceforge.net/project/soxr/soxr-0.1.2-Source.tar.xz && \
+  tar Jxvf soxr-0.1.2-Source.tar.xz && \
+  cd soxr-0.1.2-Source && \
   cmake . && \
   make && make install
 RUN \
@@ -95,9 +95,9 @@ RUN \
 RUN \
   apt-get install libjpeg-dev libgif-dev libtiff5-dev libpng12-dev -y && \
   cd /tmp && \
-  wget http://downloads.webmproject.org/releases/webp/libwebp-0.4.3.tar.gz && \
-  tar xvzf libwebp-0.4.3.tar.gz && \
-  cd libwebp-0.4.3 && \
+  wget https://downloads.webmproject.org/releases/webp/libwebp-0.5.0.tar.gz && \
+  tar xvzf libwebp-0.5.0.tar.gz && \
+  cd libwebp-0.5.0 && \
   ./configure && \
   make && make install
 RUN \
@@ -127,7 +127,7 @@ RUN \
   git clone https://github.com/FFmpeg/FFmpeg.git
 RUN \
   cd /tmp/FFmpeg && \
-  git checkout refs/tags/n2.8.1 && \
+  git checkout refs/tags/n2.8.4 && \
   ./configure \
     --enable-gpl \
     --enable-version3 \ 
