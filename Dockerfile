@@ -63,6 +63,8 @@ RUN \
   cd /tmp && \
   git clone https://github.com/ultravideo/kvazaar.git && \
   cd kvazaar && cd src && \
+  ./autogen.sh && \
+  ./configure && \
   make && make install
 RUN \
   cd /tmp && \
