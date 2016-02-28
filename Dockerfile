@@ -1,4 +1,3 @@
-
 # Pull base image.
 FROM debian:jessie
 
@@ -58,6 +57,7 @@ RUN \
   cd /tmp && \
   git clone https://github.com/cisco/openh264.git && \
   cd openh264 && \
+  git checkout refs/tags/v1.5.0 && \
   make && make install
 RUN \
   cd /tmp && \
@@ -129,10 +129,10 @@ RUN \
   git clone https://github.com/FFmpeg/FFmpeg.git
 RUN \
   cd /tmp/FFmpeg && \
-  git checkout refs/tags/n2.8.4 && \
+  git checkout refs/tags/n3.0 && \
   ./configure \
     --enable-gpl \
-    --enable-version3 \ 
+    --enable-version3 \
     --enable-nonfree \
     --enable-avisynth \
     --enable-bzlib \
